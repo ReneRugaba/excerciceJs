@@ -75,3 +75,7 @@ label.for='inputUpload';
 label.textContent='uploader une image';
 maDiv3.insertBefore(label,input);
 console.log(maDiv2);
+
+var body=document.body;
+body.appendChild(maDiv);
+body.insertAdjacentElement('beforeend',maDiv2);
