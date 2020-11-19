@@ -1,44 +1,39 @@
+var atributElt={
+    'id':'divTP1',
+    'style':'display:none;'
+};
+var maDiv=createAndappendElt(parent,'div', atributElt);
+var atributElt2={
+    'href':'https://fr.wikipedia.org/wiki/World_Wide_Web',
+    'textContent':'World Wide Web',
+    'title':'World Wide Web',
+    'id':'lien'
+};
+var monLien=createAndappendElt(parent,'a',atributElt2);
+var atributElt2={
+    'href':'https://fr.wikipedia.org/wiki/Organisme_de_normalisation',
+    'textContent':'organisme de standardisation',
+    'title':'organisme de normalisation',
+};
+var monLien=createAndappendElt(parent,'a',atributElt2);
 
-var maDiv=document.createElement('div');
-maDiv.id='divTP1';
-moLien1=lien('https://fr.wikipedia.org/wiki/Organisme_de_normalisation','organisme de transaction');
-moLien2=lien('https://fr.wikipedia.org/wiki/World_Wide_Web','World Wide Web');
 
-function lien(x,y){
-    var moLien=document.createElement('a');
-        moLien.href=x;
-        moLien.textContent=y;
-        return moLien;
+function createAndappendElt(parent,tagName,atributElt){
+    var parent=document.body;
+    var elt=document.createElement(tagName);
+        for([key,value] of Object.entries(atributElt)){
+            elt[key]=value;
+        }
+        parent.appendChild(elt);
 }
 
-maDiv.appendChild(moLien2);
-maDiv.insertBefore(moLien1,maDiv.firstChild);
+console.log(parent);
 
-function textDiv(x)
-{
-    var strong=document.createElement('strong');
-    strong.textContent=x;
-    return strong;
-}
-function text(x){
-    var p1=document.createTextNode(x);
-    return p1;
-}
 
-strong=textDiv('W3C');
-strong2=textDiv('World Wide Web Consortium');
-maDiv.insertBefore(strong,maDiv.firstChild);
-maDiv.insertBefore(text(', est un '),maDiv.firstChild);
-maDiv.insertBefore(strong2,maDiv.firstChild);
-maDiv.insertBefore(text('Le'),maDiv.firstChild);
-console.log(maDiv);
+
+
 maDiv2=Objet('div');
-maDiv2.id='divPT2';
-
-function Objet(y){
-    var x=document.createElement(y);
-    return x;
-}
+maDiv2.id='divPT';
 
 monForm=Objet('form');
 monForm.enctype='multipart/form-data';
@@ -46,6 +41,8 @@ monForm.method='post';
 monForm.action='upload.php';
 
 fild=Objet('fieldset');
+
+
 
 maDiv2.appendChild(monForm);
 monForm.appendChild(fild);
@@ -61,9 +58,7 @@ submit=Objet('input');
 submit.type='submit';
 submit.value='envoyer';
 maDiv3.appendChild(submit);
-function br(){
-    return document.createElement('br');
-}
+
 maDiv3.insertBefore(br(),submit);
 input=Objet('input');
 input.type='file';
@@ -77,5 +72,65 @@ maDiv3.insertBefore(label,input);
 console.log(maDiv2);
 
 var body=document.body;
-body.appendChild(maDiv);
 body.insertAdjacentElement('beforeend',maDiv2);
+
+// functions
+
+function creerLien(nameElement,prop,texte,prop, parent,element2){
+    nameElement.href=prop;
+    nameElement.textContent=texte;
+    nameElement.title=prop;
+    positionneElement(parent,element2);
+}
+function positionneElement(parent,element2){
+        parent.insertBefore(element2,parent.firstChild);
+}
+
+function textDiv(x)
+{
+    var strong=document.createElement('strong');
+    strong.textContent=x;
+    return strong;
+}
+function text(x){
+    var p1=document.createTextNode(x);
+    return p1;
+}
+
+function br(){
+    return document.createElement('br');
+}
+
+function Objet(y){
+    var x=document.createElement(y);
+    return x;
+}
+
+var bouton=document.getElementById('bouton');
+bouton.addEventListener('click', function () {
+    if (document.getElementById('divPT').style.display == 'none') {
+         document.getElementById('divPT').style.display = 'block';
+    } else {
+        document.getElementById('divPT').style.display = 'none';
+    }
+});
+  
+var coche=document.getElementById('coche');
+var decoche=document.getElementById('decoche');
+var input=document.getElementById('inputCheck');
+console.log(input);
+coche.addEventListener('click',function(){
+    for(i=0;i<input.length;i++){
+        if(input[i].checked==false){
+            input[i].checked=true;
+        }
+    }
+})
+
+decoche.addEventListener('click',function(){
+    for(i=0;i<input.length;i++){
+        if(input[i].checked==true){
+            input[i].checked=false;
+        }
+    }
+})
