@@ -134,3 +134,41 @@ decoche.addEventListener('click',function(){
         }
     }
 })
+
+var brs=document.getElementsByTagName('br');
+    console.log(brs);
+    boutonBr=document.getElementById('brs');
+    console.log(boutonBr);
+    p=document.getElementsByTagName('p');
+    console.log(p);
+
+    boutonBr.addEventListener('click',function(){
+       if(brs.length!==0){
+        for(var i=brs.length-1;i>=0;i--){
+            brs[i].parentNode.removeChild(brs[i]);
+        }
+       }
+    })
+
+   var tds=document.getElementsByTagName('td');
+    console.log(tds);
+   for(i=0;i<tds.length;i++){
+        tds[i].addEventListener('click',function(e){
+            laCible = e.target;
+            inputContent=laCible.innerHTML;
+            input=document.createElement('input');
+            input.type='texte';
+            input.autofocus=true;
+            input.value=inputContent;
+            laCible.textContent='';
+            input.addEventListener('click',function(e){
+                e.stopPropagation();
+            })
+            laCible.appendChild(input);
+            input.addEventListener('focusout',function(e){
+                laCible.innerHTML=input.value;
+                console.log(laCible);
+            });
+            
+        })
+   }
