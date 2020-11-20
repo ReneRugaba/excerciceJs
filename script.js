@@ -172,3 +172,6 @@ var brs=document.getElementsByTagName('br');
             
         })
    }
+
+   var texte= $('#text').text();
+   console.log(texte);
