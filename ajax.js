@@ -21,3 +21,27 @@ $("#option").on('click', function(){
         }
     })
 })
+
+$('.table-dark tbody').load('tableau.php');
+$('#marque').on('change',function(e){
+        let marque=$('#marque :selected').val();
+       if(marque){
+        $('#modele').load('tableau.php?marque='+marque);
+        $('.table-dark tbody').load('tableau.php?affiche=tableau&marque='+marque);
+       }else{
+        $('#modele').load('tableau.php?marque=');
+        $('.table-dark tbody').load('tableau.php');
+       }
+})
+ 
+$('#modele').on('change',function(e){
+        const marque=$('#marque :selected').val();
+        const modele=$('#modele :selected').val();
+       if(marque && modele){
+        $('#modele').load('tableau.php?marque='+marque+'&modele='+modele);
+        $('.table-dark tbody').load('tableau.php?affiche=tableau&marque='+marque+'&modele='+modele);
+       }else{
+        $('#modele').load('tableau.php?marque=');
+        $('.table-dark tbody').load('tableau.php');
+       }
+})
