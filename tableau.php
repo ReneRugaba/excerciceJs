@@ -43,36 +43,16 @@ foreach ($voiture as $value) {
     }
 }
 if (
-    !empty($modele) && isset($_GET['marque']) && !isset($_GET['affiche'])
+    !empty($modele) && isset($_GET['marque'])
 
 ) {
-    foreach ($modele as $value) {
-?>
-        <option value="<?php echo $value->model; ?>">
-            <?php echo $value->model; ?>
-        </option>
-    <?php
-    }
+    echo json_encode($modele);
 } elseif (
     !empty($modele) && isset($_GET['affiche']) && $_GET['affiche'] == 'tableau'
     || !empty($modele) && isset($_GET['affiche']) && $_GET['affiche'] == 'tableau'
     && isset($_GET['modele']) && isset($_GET['marque'])
 ) {
-    foreach ($modele as $val) {
-    ?>
-        <tr>
-            <td><?php echo $val->marque; ?></td>
-            <td><?php echo $val->model; ?></td>
-        </tr>
-    <?php
-    }
+    echo json_encode($modele);
 } else {
-    foreach ($voiture as $val) {
-    ?>
-        <tr>
-            <td><?php echo $val->marque; ?></td>
-            <td><?php echo $val->model; ?></td>
-        </tr>
-<?php
-    }
+    echo json_encode($voiture);
 }
