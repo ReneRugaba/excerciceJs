@@ -53,19 +53,20 @@ $('#modele').on('change',function(e){
 }) 
 
 //fonction qui me permet de factoriser la requete http ajax vers le controleur php
-function afficheFiltre(url,selected){
-        if(selected){
-            $.getJSON(url,function(data){
-                $('.table-dark tbody').empty();
-                $('#modele').empty();
-                $("<option value=''>").html('--selectionner un model de voiture--').appendTo('#modele');
-                $.each(data,function(key,value){
-                    $('#modele').append($("<option value='"+value.model+"'>").html(value.model));
-                    $('<tr>').append($('<td>').html(value.marque),$('<td>').html(value.model)).appendTo('.table-dark tbody');
+function afficheFiltre(url,selected){//selected est un bool
+        if(selected){//si selected est true j'execute
+            $.getJSON(url,function(data){//création de la requete http par get avec un retour json parsé en objet js
+                $('.table-dark tbody').empty();//ici je vide mon tbody pour eviter les duplication
+                $('#modele').empty();// je vide le selecte pour eviter les duplication
+                $("<option value=''>").html('--selectionner un model de voiture--').appendTo('#modele');//je crée une balise option sans valeur pour
+                // qu'il ai pas de valeur selection d'unne valeur par defaut
+                $.each(data,function(key,value){//ici j'effectue un forheach pour creer mes option et mes select, en parcourant mes objet js parsés
+                    $('#modele').append($("<option value='"+value.model+"'>").html(value.model));//ici je met mes modeles de voiture dans le select
+                    $('<tr>').append($('<td>').html(value.marque),$('<td>').html(value.model)).appendTo('.table-dark tbody');//ici je met les marques et leur models dans mon tbodys
                 })
             })
-        }else{
-            $.getJSON('tableau.php',function(data){
+        }else{//dans le cas ou selected est à false, j'excute ce code
+            $.getJSON('tableau.php',function(data){//création de la requete http par get avec un retour json parsé en objet js
                 $.each(data,function(key,value){
                 $('<tr>').append($('<td>').html(value.marque),$('<td>').html(value.model)).appendTo('.table-dark tbody');
                 })
